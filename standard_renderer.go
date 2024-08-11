@@ -255,7 +255,10 @@ func (r *standardRenderer) flush() {
 			// program initialization, so after a resize this won't perform
 			// correctly (signal SIGWINCH is not supported on Windows).
 			if r.width > 0 {
-				line = ansi.Truncate(line, r.width, "")
+				// TODO: For chatuino: Add truncate that is aware of graphics
+				// For now removing this check is okay since chatuino calculates the with
+				// by itself
+				// line = ansi.Truncate(line, r.width, "")
 			}
 
 			_, _ = buf.WriteString(line)
